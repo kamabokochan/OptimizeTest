@@ -30,7 +30,15 @@
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  head () {
+    return {
+      script: [
+        { src: 'https://www.googleoptimize.com/optimize.js?id=OPT-WRHD6Z3' }
+      ]
+    }
+  }
+})
 </script>
 
 <style>
