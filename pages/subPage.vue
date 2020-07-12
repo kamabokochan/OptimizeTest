@@ -1,32 +1,9 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        OptimizeTest
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-        <nuxt-link to="/subPage">
-          subPage
-        </nuxt-link>
-      </div>
-    </div>
+    <h1>Sub Page</h1>
+    <nuxt-link to="/">
+      Back to top
+    </nuxt-link>
   </div>
 </template>
 
@@ -34,13 +11,6 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  head () {
-    return {
-      script: [
-        { src: 'https://www.googleoptimize.com/optimize.js?id=OPT-WRHD6Z3' }
-      ]
-    }
-  }
 })
 </script>
 
