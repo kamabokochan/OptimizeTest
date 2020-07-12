@@ -37,6 +37,7 @@ import { Component } from 'nuxt-property-decorator'
 declare global {
   interface Window {
       optimize: boolean,
+      dataLayer: any
   }
 }
 
@@ -52,6 +53,9 @@ export default class IndexPage extends Vue {
   }
 
   mounted () {
+    if (window.dataLayer) {
+      window.dataLayer.push({ event: 'optimize.activate' })
+    }
     if (window.optimize) {
       this.isOptimizePage = true
     }
