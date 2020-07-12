@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
+      <Logo v-if="isOptimizePage" />
       <h1 class="title">
         OptimizeTest
       </h1>
@@ -32,8 +32,17 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { Component } from 'nuxt-property-decorator'
 
-export default Vue.extend({
+declare global {
+  interface Window {
+      optimize: boolean,
+  }
+}
+
+@Component({})
+export default class IndexPage extends Vue {
+  isOptimizePage = false
   head () {
     return {
       script: [
@@ -41,7 +50,13 @@ export default Vue.extend({
       ]
     }
   }
-})
+
+  mounted () {
+    if (window.optimize) {
+      this.isOptimizePage = true
+    }
+  }
+}
 </script>
 
 <style>
