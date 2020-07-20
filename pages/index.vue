@@ -47,8 +47,15 @@ export default class IndexPage extends Vue {
   head () {
     return {
       script: [
-        { src: 'https://www.googleoptimize.com/optimize.js?id=OPT-WRHD6Z3' }
-      ]
+        {
+          innerHTML: "(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};(a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;})(window,document.documentElement,'async-hide','dataLayer',4000,{'GTM-TLFTHCG':true});"
+        },
+        {
+          src: 'https://www.googleoptimize.com/optimize.js?id=OPT-WRHD6Z3',
+          onerror: 'dataLayer.hide.end && dataLayer.hide.end()'
+        }
+      ],
+      __dangerouslyDisableSanitizers: ['script']
     }
   }
 
@@ -64,6 +71,7 @@ export default class IndexPage extends Vue {
 </script>
 
 <style>
+.async-hide { opacity: 0 !important}
 .container {
   margin: 0 auto;
   min-height: 100vh;
