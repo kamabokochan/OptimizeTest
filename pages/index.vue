@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <Logo v-if="isOptimizePage" />
+      <Logo />
       <h1 class="title">
         OptimizeTest
       </h1>
@@ -37,13 +37,13 @@ import { Component } from 'nuxt-property-decorator'
 declare global {
   interface Window {
       optimize: boolean,
-      dataLayer: any
+      dataLayer: any,
+      google_optimize: any
   }
 }
 
 @Component({})
 export default class IndexPage extends Vue {
-  isOptimizePage = false
   head () {
     return {
       script: [
@@ -59,13 +59,20 @@ export default class IndexPage extends Vue {
     }
   }
 
-  mounted () {
+  async mounted () {
+    // if (window.dataLayer) {
+    //   window.dataLayer.push({ event: 'optimize.activate' })
+    // }
     if (window.dataLayer) {
-      window.dataLayer.push({ event: 'optimize.activate' })
+      await window.dataLayer.push({ event: "optimize.activate" });
     }
-    if (window.optimize) {
-      this.isOptimizePage = true
-    }
+    // const intervalId = setInterval(() => {
+    //   if (window.google_optimize !== undefined) {
+    //     const variant = window.google_optimize.get('wIOLBw_BTyaHPqjwWH8wWg');
+    //     console.log(variant)
+    //     clearInterval(intervalId);
+    //   }
+    // }, 100);
   }
 }
 </script>
