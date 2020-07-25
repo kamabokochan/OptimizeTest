@@ -60,19 +60,16 @@ export default class IndexPage extends Vue {
   }
 
   async mounted () {
-    // if (window.dataLayer) {
-    //   window.dataLayer.push({ event: 'optimize.activate' })
-    // }
     if (window.dataLayer) {
       await window.dataLayer.push({ event: "optimize.activate" });
     }
-    // const intervalId = setInterval(() => {
-    //   if (window.google_optimize !== undefined) {
-    //     const variant = window.google_optimize.get('wIOLBw_BTyaHPqjwWH8wWg');
-    //     console.log(variant)
-    //     clearInterval(intervalId);
-    //   }
-    // }, 100);
+    const intervalId = setInterval(() => {
+      if (window.google_optimize !== undefined) {
+        const variant = window.google_optimize.get('wIOLBw_BTyaHPqjwWH8wWg');
+        console.log(variant)
+        clearInterval(intervalId);
+      }
+    }, 100);
   }
 }
 </script>
