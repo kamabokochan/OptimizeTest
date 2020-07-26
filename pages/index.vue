@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div>
-      <h1 v-if="variant === 0">オリジナル</h1>
-      <h1 v-if="variant === 1">パターン1</h1>
-      <h1 v-if="variant === 2">パターン2</h1>
+      <h1 v-if="variant === '0'">オリジナル</h1>
+      <h1 v-if="variant === '1'">パターン1</h1>
+      <h1 v-if="variant === '2'">パターン2</h1>
     </div>
     <div>
       <nuxt-link to="/subPage">
