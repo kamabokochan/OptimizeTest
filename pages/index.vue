@@ -1,31 +1,14 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
-      <h1 class="title">
-        OptimizeTest
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-        <nuxt-link to="/subPage">
-          subPage
-        </nuxt-link>
-      </div>
+      <h1 v-if="variant === 0">オリジナル</h1>
+      <h1 v-if="variant === 1">パターン1</h1>
+      <h1 v-if="variant === 2">パターン2</h1>
+    </div>
+    <div>
+      <nuxt-link to="/subPage">
+        subPage
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -44,6 +27,8 @@ declare global {
 
 @Component({})
 export default class IndexPage extends Vue {
+  variant: string = ''
+
   head () {
     return {
       script: [
@@ -64,9 +49,10 @@ export default class IndexPage extends Vue {
       await window.dataLayer.push({ event: "optimize.activate" });
     }
     const intervalId = setInterval(() => {
+      // googleootimizeが読み込まれるまでループ
       if (window.google_optimize !== undefined) {
-        const variant = window.google_optimize.get('wIOLBw_BTyaHPqjwWH8wWg');
-        console.log(variant)
+        this.variant = window.google_optimize.get('wIOLBw_BTyaHPqjwWH8wWg');
+        console.log(this.variant)
         clearInterval(intervalId);
       }
     }, 100);
@@ -80,8 +66,9 @@ export default class IndexPage extends Vue {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
   text-align: center;
 }
 
