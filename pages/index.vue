@@ -1,9 +1,15 @@
 <template>
   <div class="container">
     <div>
-      <h1 v-if="variant === '0'">オリジナル</h1>
-      <h1 v-if="variant === '1'">パターン1</h1>
-      <h1 v-if="variant === '2'">パターン2</h1>
+      <h1 v-if="variant === '0'">
+        オリジナル
+      </h1>
+      <h1 v-if="variant === '1'">
+        パターン1
+      </h1>
+      <h1 v-if="variant === '2'">
+        パターン2
+      </h1>
     </div>
     <div>
       <nuxt-link to="/subPage">
@@ -46,16 +52,16 @@ export default class IndexPage extends Vue {
 
   async mounted () {
     if (window.dataLayer) {
-      await window.dataLayer.push({ event: "optimize.activate" });
+      await window.dataLayer.push({ event: 'optimize.activate' })
     }
     const intervalId = setInterval(() => {
       // googleootimizeが読み込まれるまでループ
       if (window.google_optimize !== undefined) {
-        this.variant = window.google_optimize.get('wIOLBw_BTyaHPqjwWH8wWg');
+        this.variant = window.google_optimize.get('wIOLBw_BTyaHPqjwWH8wWg')
         console.log(this.variant)
-        clearInterval(intervalId);
+        clearInterval(intervalId)
       }
-    }, 100);
+    }, 100)
   }
 }
 </script>
